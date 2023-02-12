@@ -41,6 +41,7 @@ body {
 }
 
 
+
 .main__inner__heading {
     height: 10%;
     width: 100%;
@@ -134,4 +135,11 @@ body {
 
 .counterclock {
     background-color: #060047 !important;
+}
+
+.drone_logo {
+    display: flex;
+    justify-content: center;
+    font-size: 9rem;
+    font-weight: 900;
 }

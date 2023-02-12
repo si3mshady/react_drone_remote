@@ -2,26 +2,16 @@ import * as React  from 'react';
 import './App.css'
 import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
-import io from 'socket.io-client';
-
-const socket = io('http://localhost:888');
-
-// React.useEffect(() => {
+import axios from 'axios'
+import { GiDeliveryDrone } from "react-icons/gi";
 
 
-
-// },[])
-
-const handleTakeOff = () => {
-  socket.emit('takeoff', { message: 'Takeoff button was pressed' });
-};
+const server = "http://localhost:888"
 
 
-const handleLanding = () => {
-  socket.emit('land', { message: 'Landing button was pressed' });
-};
-
-
+const connect = async () => {
+await axios.get(`${server}/connect`)
+}
 
 function valuetext (value) {
   return value;
@@ -34,7 +24,10 @@ function App() {
      <div className='main__inner'>
 
           <div className='main__inner__heading'>          
-                <h1 className='title'>Drone Control</h1>
+                
+                {/* <h1 className='title'>Drone Control</h1> */}
+
+                <Button onClick={connect} size="large" className='takeOffButton' variant="contained">Connect</Button>
 
           </div>
 
@@ -53,8 +46,9 @@ function App() {
         />
     </div>
     <div className='main__inner__buttons'>
-        <Button onClick={handleTakeOff} size="large" className='takeOffButton' variant="contained">Take Off</Button>
-        <Button onClick={handleLanding} className='landButton'  variant="contained">Land</Button>
+   
+        <Button onClick={connect} size="large" className='takeOffButton' variant="contained">Take Off</Button>
+        <Button  className='landButton'  variant="contained">Land</Button>
  
     </div>
 
@@ -76,12 +70,18 @@ function App() {
         <Button  className='counterclock'  variant="contained">Counter Clock</Button>
  
     </div>
+      <div className='drone_logo'>
 
+      <GiDeliveryDrone />
 
+      </div>
+   
 
      </div>
 
 
+
+  
    
      </div>
    </>
