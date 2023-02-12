@@ -17,6 +17,20 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.post('/speed', async  (req, res) => {
+ 
+  try {
+
+    const velocity = console.log(req.body.velocity)
+    console.log('speed pressed')
+    await sdk.set.speed(velocity)   
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 
 app.get('/connect', async (req, res) => {
   console.log('connection triggered')
@@ -91,7 +105,7 @@ app.post('/right', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('right pressed')
-    await sdk.control.move.left(distance)  
+    await sdk.control.move.right(distance)  
   } catch (error) {
     console.log(error)
   }

@@ -82,6 +82,12 @@ function App() {
     }
         
       
+    const velocity = async () => {
+    
+      await axios.post(`${server}/speed`,{velocity:speed})
+    
+    }
+        
       
         
       
@@ -90,6 +96,7 @@ function App() {
 
   function valuetext (value) {
     setSpeed(value)
+    velocity()
       return value;
       
     }
@@ -139,7 +146,7 @@ function App() {
           step={2}
           marks
           min={0}
-          max={20}
+          max={100}
           defaultValue={speed}
         />
 
