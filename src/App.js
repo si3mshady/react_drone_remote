@@ -12,8 +12,8 @@ const server = "http://localhost:888"
 
 function App() {
 
-  const [speed, setSpeed] = React.useState(10)
-  const [distance, setDistance] = React.useState(5)
+  const [speed, setSpeed] = React.useState(30)
+  const [distance, setDistance] = React.useState(50)
 
   const connect = async () => {
     await axios.get(`${server}/connect`)
@@ -94,15 +94,19 @@ function App() {
       
 
 
-  function valuetext (value) {
+  async function handleSpeed  (value) {
+    console.log(`New speed ${value}`)
     setSpeed(value)
-    velocity()
+    await velocity()
+   
       return value;
       
     }
 
-    function showDistanceText (value) {
+    async function handleDistance  (value) {
+      console.log(`New distance ${distance}`)
       setDistance(value)
+      
         return value;
         
       }
@@ -126,8 +130,9 @@ function App() {
     <p>Speed</p>
 
     <Slider
+          onChange={handleSpeed}
           aria-label="Speed"
-          getAriaValueText={valuetext}
+          getAriaValueText={handleSpeed}
           valueLabelDisplay="auto"
           step={2}
           marks
@@ -141,13 +146,14 @@ function App() {
 
 <Slider
           aria-label="Distance"
-          getAriaValueText={showDistanceText}
+          getAriaValueText={handleDistance}
           valueLabelDisplay="auto"
           step={2}
           marks
           min={0}
           max={100}
-          defaultValue={speed}
+          defaultValue={distance}
+          // onChange={(e) => {handleDistance(e)}}
         />
 
     </div>

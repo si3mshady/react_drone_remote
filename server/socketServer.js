@@ -21,7 +21,7 @@ app.post('/speed', async  (req, res) => {
  
   try {
 
-    const velocity = console.log(req.body.velocity)
+    const velocity = req.body.velocity
     console.log('speed pressed')
     await sdk.set.speed(velocity)   
     
@@ -33,14 +33,30 @@ app.post('/speed', async  (req, res) => {
 
 
 app.get('/connect', async (req, res) => {
-  console.log('connection triggered')
-  await sdk.control.connect() 
+ 
+
+  try {
+
+    console.log('connection triggered')
+    await sdk.control.connect() 
+    
+  } catch (error) {
+
+    console.log(error)
+    
+  }
 })
 
 
 app.get('/takeoff', async(req, res) => {
-  console.log('take off triggered')
-  await sdk.control.takeOff()     
+ 
+
+  try {
+    console.log('take off triggered')
+    await sdk.control.takeOff()     
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 
@@ -72,7 +88,6 @@ app.post('/up', async  (req, res) => {
 })
 
 
-
 app.post('/down', async  (req, res) => {
  
   try {
@@ -93,7 +108,7 @@ app.post('/left', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('left pressed')
-    await sdk.control.move.left(distance)  
+    await sdk.control.move.left(100)  
   } catch (error) {
     console.log(error)
   }
@@ -105,7 +120,7 @@ app.post('/right', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('right pressed')
-    await sdk.control.move.right(distance)  
+    await sdk.control.move.right(100)  
   } catch (error) {
     console.log(error)
   }
@@ -118,7 +133,7 @@ app.post('/forward', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('forward pressed')
-    await sdk.control.move.front(distance)  
+    await sdk.control.move.front(100)  
   } catch (error) {
     console.log(error)
   }
@@ -131,7 +146,7 @@ app.post('/backward', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('backward pressed')
-    await sdk.control.move.back(distance)  
+    await sdk.control.move.back(100)  
   } catch (error) {
     console.log(error)
   }
@@ -160,8 +175,6 @@ app.get('/flipright', async  (req, res) => {
     console.log(error)
   }
 })
-
-
 
 
 
