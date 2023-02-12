@@ -9,15 +9,98 @@ import { GiDeliveryDrone } from "react-icons/gi";
 const server = "http://localhost:888"
 
 
-const connect = async () => {
-await axios.get(`${server}/connect`)
-}
-
-function valuetext (value) {
-  return value;
-}
 
 function App() {
+
+  const [speed, setSpeed] = React.useState(10)
+  const [distance, setDistance] = React.useState(5)
+
+  const connect = async () => {
+    await axios.get(`${server}/connect`)
+    }
+    
+    const takeoff = async () => {
+      await axios.get(`${server}/takeoff`)
+      }
+    
+    const land = async () => {
+    
+        await axios.get(`${server}/land`)
+        }
+    
+    const up = async () => {
+    
+      await axios.post(`${server}/up`,{distance:  distance})
+    
+    }
+
+    const down = async () => {
+    
+      await axios.post(`${server}/down`,{distance:  distance})
+    
+    }
+
+
+    const left = async () => {
+    
+      await axios.post(`${server}/left`,{distance:  distance})
+    
+    }
+        
+    const right = async () => {
+    
+      await axios.post(`${server}/right`,{distance:  distance})
+    
+    }
+        
+    const forward = async () => {
+    
+      await axios.post(`${server}/forward`,{distance:  distance})
+    
+    }
+
+    const backward = async () => {
+    
+      await axios.post(`${server}/backward`,{distance:  distance})
+    
+    }
+        
+      
+        
+    const flipleft = async () => {
+    
+      await axios.get(`${server}/flipleft`)
+    
+    }
+        
+      
+          
+    const flipright = async () => {
+    
+      await axios.get(`${server}/flipright`)
+    
+    }
+        
+      
+      
+        
+      
+      
+
+
+  function valuetext (value) {
+    setSpeed(value)
+      return value;
+      
+    }
+
+    function showDistanceText (value) {
+      setDistance(value)
+        return value;
+        
+      }
+      
+    
   return (
    <>
      <div className='main'>
@@ -25,7 +108,7 @@ function App() {
 
           <div className='main__inner__heading'>          
                 
-                {/* <h1 className='title'>Drone Control</h1> */}
+                <h2 className='title'>Drone Control</h2>
 
                 <Button onClick={connect} size="large" className='takeOffButton' variant="contained">Connect</Button>
 
@@ -39,35 +122,54 @@ function App() {
           aria-label="Speed"
           getAriaValueText={valuetext}
           valueLabelDisplay="auto"
-          step={10}
+          step={2}
           marks
           min={0}
           max={100}
+          defaultValue={speed}
         />
+
+<p>Distance</p>
+
+
+<Slider
+          aria-label="Distance"
+          getAriaValueText={showDistanceText}
+          valueLabelDisplay="auto"
+          step={2}
+          marks
+          min={0}
+          max={20}
+          defaultValue={speed}
+        />
+
     </div>
+
+
+
     <div className='main__inner__buttons'>
    
-        <Button onClick={connect} size="large" className='takeOffButton' variant="contained">Take Off</Button>
-        <Button  className='landButton'  variant="contained">Land</Button>
+        <Button onClick={takeoff} size="large" className='takeOffButton' variant="contained">Take Off</Button>
+        <Button onClick={land}  className='landButton'  variant="contained">Land</Button>
  
     </div>
 
 
     <div className='main__inner__buttons_middle'>
-        <Button style={{color: "white"}} className='button' variant="contained">Up</Button>
-        <Button  className='button'  variant="contained">Left</Button>
-        <Button  className='button'  variant="contained">Forward</Button>
+        <Button  onClick={up} className='button' variant="contained">Up</Button>
+        <Button  onClick={left} className='button'  variant="contained">Left</Button>
+        <Button  onClick={forward}  className='button'  variant="contained">Forward</Button>
  
     </div>
     <div className='main__inner__buttons_middle'>
-        <Button style={{color: "white"}} className='button' variant="contained">Down</Button>
-        <Button  className='button'  variant="contained">Right</Button>
-        <Button  className='button'  variant="contained">Backwards</Button>
+        <Button  onClick={down} className='button' variant="contained">Down</Button>
+        <Button  onClick={right} className='button'  variant="contained">Right</Button>
+        <Button onClick={backward}   className='button'  variant="contained">Backwards</Button>
  
     </div>
     <div className='main__inner__buttons'>
-        <Button  size="large" className='clockwise' variant="contained">Clockwise</Button>
-        <Button  className='counterclock'  variant="contained">Counter Clock</Button>
+        <Button onClick={flipleft} size="large" className='clockwise' variant="contained">Flip Left</Button>
+        <Button onClick={flipright} className='counterclock'  variant="contained">Flip Right</Button>
  
     </div>
       <div className='drone_logo'>

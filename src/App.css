@@ -51,7 +51,7 @@ body {
     border: 5px solid lightgrey;
     color: lightslategray;
     align-items: center;
-    /* flex-direction: column; */
+    flex-direction: column;
    
     /* background-color: grey; */
    
