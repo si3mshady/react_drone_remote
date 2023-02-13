@@ -22,6 +22,7 @@ app.post('/speed', async  (req, res) => {
   try {
 
     const velocity = req.body.velocity
+    console.log(typeof(velocity))
     console.log('speed pressed')
     await sdk.set.speed(velocity)   
     
@@ -80,7 +81,7 @@ app.post('/up', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('Up pressed')
-    await sdk.control.move.up(distance)  
+    await sdk.control.move.up(50)  
     
   } catch (error) {
     console.log(error)
@@ -94,7 +95,7 @@ app.post('/down', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('down pressed')
-    await sdk.control.move.down(distance)  
+    await sdk.control.move.down(50)  
     
   } catch (error) {
     console.log(error)
@@ -108,7 +109,7 @@ app.post('/left', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('left pressed')
-    await sdk.control.move.left(100)  
+    await sdk.control.move.left(50)  
   } catch (error) {
     console.log(error)
   }
@@ -120,7 +121,7 @@ app.post('/right', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('right pressed')
-    await sdk.control.move.right(100)  
+    await sdk.control.move.right(50)  
   } catch (error) {
     console.log(error)
   }
@@ -133,7 +134,7 @@ app.post('/forward', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('forward pressed')
-    await sdk.control.move.front(100)  
+    await sdk.control.move.front(50)  
   } catch (error) {
     console.log(error)
   }
@@ -146,7 +147,7 @@ app.post('/backward', async  (req, res) => {
 
     const distance = console.log(req.body.distance)
     console.log('backward pressed')
-    await sdk.control.move.back(100)  
+    await sdk.control.move.back(50)  
   } catch (error) {
     console.log(error)
   }

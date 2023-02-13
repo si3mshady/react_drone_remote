@@ -97,6 +97,7 @@ function App() {
   async function handleSpeed  (value) {
     console.log(`New speed ${value}`)
     setSpeed(value)
+    console.log(typeof(value))
     await velocity()
    
       return value;
